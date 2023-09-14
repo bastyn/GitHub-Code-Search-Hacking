@@ -6,7 +6,7 @@ org:<your-org> <dork>
 
 # Show files that are most likely production environment
 ```
-<dork> NOT path:*tst* NOT path:*test* NOT path:*dev* NOT path:*development* NOT path:*local* NOT path:*acc* NOT path:*acceptance*
+<dork> NOT path:*tst* NOT path:*test* NOT path:*dev* NOT path:*development* NOT path:*local* NOT path:*acc* NOT path:*acceptance* NOT path:*staging*
 ```
 
 # API keys 
@@ -32,6 +32,11 @@ org:<your-org> <dork>
 # Value
 ```
 /[v|V][a|A][l|L][u|U][e|E].*['|\"][0-9a-zA-Z]{32,45}['|\"]/
+```
+
+# Tokens
+```
+/[t|T][o|O][k|K][e|E][n|N].*['|\"][0-9a-zA-Z]{20,45}['|\"]/
 ```
 
 # Private keys
