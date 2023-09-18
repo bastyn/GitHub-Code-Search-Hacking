@@ -1,74 +1,132 @@
-# Scope
-```
-repo:<your-repo> <dork>
-org:<your-org> <dork>
-```
+# Dorks
 
-# Show files that are most likely production environment
-```
-<dork> NOT path:*tst* NOT path:*test* NOT path:*dev* NOT path:*development* NOT path:*local* NOT path:*acc* NOT path:*acceptance* NOT path:*staging*
-```
+## API keys
 
-# API keys 
-```
+```text
 /[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]/
+/[a|A][p|P][i|I][_]?[k|K][e|E][y|Y][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
+/[a|A][p|P][i|I][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
+/[k|K][e|E][y|Y][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
 ```
 
-## Google 
-```
+### Google API keys
+
+```text
 /AIza[0-9A-Za-z\\-_]{35}/
 ```
 
-# Secrets
+### SendGrid API keys
+
+```text
+/SG\.[a-zA-Z0-9_-]{22}\.[a-zA-Z0-9_-]{43}/
 ```
+
+### Slack hooks
+
+```text
+/https:\/\/hooks\.slack\.com\/services\/T[a-zA-Z0-9_]+\/B[a-zA-Z0-9_]+\/[a-zA-Z0-9_]+/
+```
+
+## Secrets
+
+```text
 /[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]/
 ```
 
-# Passwords
-```
-/[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D].*['|\"][0-9a-zA-Z]{8,45}['|\"]/
+## Passwords
+
+```text
+/[p|P][w|W][d|D][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
+/[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
+/[p|P][a|A][s|S][s|S][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
 ```
 
-# Value
-```
+## Values
+
+```text
 /[v|V][a|A][l|L][u|U][e|E].*['|\"][0-9a-zA-Z]{32,45}['|\"]/
 ```
 
-# Tokens
-```
-/[t|T][o|O][k|K][e|E][n|N].*['|\"][0-9a-zA-Z]{20,45}['|\"]/
+## Tokens
+
+```text
+/[t|T][o|O][k|K][e|E][n|N][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
 ```
 
-# Private keys
+### JWTs
+
+```text
+/eyJ[A-Za-z0-9\-_=]+\.[A-Za-z0-9\-_=]+\.?[A-Za-z0-9\-_.+\/=]*?/
 ```
+
+### GitHub tokens
+
+```text
+/[g|G][h|H][p|P|o|O|u|U|s|S|r|R]_[A-Za-z0-9_]{36}/
+```
+
+## General connection strings
+
+```text
+/:\/\/[^{}\s]+:([^{}\s]+)@/
+```
+
+## SSH private keys
+
+```text
+/BEGIN[A-Z\s]+PRIVATE KEY/
 /-----BEGIN [A-Z\s]+ PRIVATE KEY-----/
 ```
 
-# SQL credentials
+### Putty private keys
 
-## Oracle
-```
-/sqlplus(.*?)[A-Za-z0-9]+\/[A-Za-z0-9]+@[a-zA-Z0-9!@#$&()-`.+,"]+/
+```text
+/PuTTY-User-Key-File-2/
 ```
 
-## MySQL
+## SQL credentials
+
+### Oracle
+
+```text
+/sqlplus(.*?)[A-Za-z0-9]+\/[A-Za-z0-9]+@[a-zA-Z0-9!@#$&()-\`.+,\"]+/
 ```
+
+### MySQL
+
+```text
 /mysql -u [a-zA-Z0-9!@#$&()-`.+,"]+ -p[a-zA-Z0-9!@#$&()-`.+,"]+/ 
 ```
 
-## SQL Server
-```
+### SQL Server
+
+```text
 /SQLCMD [\/-]S [a-zA-Z0-9!@#$&()-`.+,\:"]+ -U [a-zA-Z0-9!@#$&()-`.+,"]+ -P [a-zA-Z0-9!@#$&()-`.+,"]+/
 ```
 
-# Azure
+## Azure
 
-## SharedAccessToken
+### SharedAccessToken
+
+```text
+/AccountKey=[a-zA-Z0-9+\/=]{88}/
+/SharedAccessKey=[a-zA-Z0-9!\/\\+=]{30,50}/
+/InstrumentationKey=[a-zA-Z0-9\\-]{30,50}/
 ```
-/SharedAccessKey=[a-zA-Z0-9!\/@#$&()-`.+,"]+;/
-/SharedAccessKey=[a-zA-Z0-9!\/@#$&()-`.+,"]+;/
-/InstrumentationKey=[a-zA-Z0-9-]+;/
-/AccountKey=[a-zA-Z0-9!\/@#$&()-`.+,"]+;/
-/SharedAccessKey=[a-zA-Z0-9!\/@#$&()-`.+,"]+;/
-/InstrumentationKey=[a-zA-Z0-9-]+;/
+
+### windows.net
+
+```text
+/[k|K][e|E][y|Y]+.*.windows.net/
+/[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]+.*.windows.net/
+/[t|T][o|O][k|K][e|E][n|N]+.*.windows.net/
+/.windows.net.*[k|K][e|E][y|Y]+/
+/.windows.net.*[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]+/
+/.windows.net.*[t|T][o|O][k|K][e|E][n|N]+/
+```
+
+## AWS
+
+```text
+/[a|A][w|W][s|S][\s\t\'\"]*[=:>]+[\s\t\'\"]*[a-zA-Z0-9!@#$&()-\`\\\/_\|.+,\"]{8,60}/
 ```
